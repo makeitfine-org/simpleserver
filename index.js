@@ -4,21 +4,23 @@ const port = 4000
 // const audit = require('express-requests-logger')
 // app.use(audit())
 
-const allowedGreetOrigins = ['https://www.google.com','https://meta.ua']
+const allowedGreetOrigins = ['https://www.google.com', 'https://meta.ua', 'https://en.wikipedia.org']
 let origin
 
 app.use((req, res, next) => {
     console.log("====== New request =====");
-    console.log("method: " + req.url);
-    console.log("url:    " + req.method);
+    console.log("method: " + req.method);
+    console.log("url:    " + req.url);
     console.log("host:    " + req.headers.host);
     console.log("origin:    " + req.headers.origin);
     console.log("-----");
 
     origin = req.headers.origin
-    if (allowedGreetOrigins.includes(origin)) {
-        res.header("Access-Control-Allow-Origin", origin)
-    }
+    // if (allowedGreetOrigins.includes(origin)) {
+    //     res.header("Access-Control-Allow-Origin", origin)
+    // }
+
+    res.set('Cache-Control', 'no-store')
 
     next();
 });
@@ -30,16 +32,13 @@ app.get('/', (req, res) => {
 })
 
 app.get('/greet', (req, res) => {
-    res.send('Hi!')
-})
-
-app.get('/greet', (req, res) => {
+    // if (allowedGreetOrigins.includes(origin)) {
+    //     res.header("Access-Control-Allow-Origin", origin)
+    // }
     res.send('Hi!')
 })
 
 app.post('/greet', (req, res) => {
-
-
     console.log('body: ' + JSON.stringify(req.body))
 
     let contentType = req.header('Content-Type')
@@ -47,9 +46,9 @@ app.post('/greet', (req, res) => {
 
     if (contentType == 'application/json') {
 
-        // if (allowedGreetOrigins.includes(origin)) {
-        //     res.header("Access-Control-Allow-Origin", origin)
-        // }
+        if (allowedGreetOrigins.includes(origin)) {
+            res.header("Access-Control-Allow-Origin", origin)
+        }
 
         res.send('POST: name (json)> ' + req.body.name + ' Hi!')
     } else if (contentType == 'text/plain') {
@@ -60,8 +59,13 @@ app.post('/greet', (req, res) => {
 })
 
 app.options('/greet', (req, res) => {
-    res.header('Access-Control-Allow-Methods', 'POST')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT')
     res.header('Access-Control-Allow-Headers', 'Content-type')
+    res.header("Access-Control-Max-Age", 5)
+
+    if (allowedGreetOrigins.includes(origin)) {
+        res.header("Access-Control-Allow-Origin", origin)
+    }
 
     res.send()
 })
