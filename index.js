@@ -13,6 +13,9 @@ app.use((req, res, next) => {
     console.log("url:    " + req.url);
     console.log("host:    " + req.headers.host);
     console.log("origin:    " + req.headers.origin);
+
+    cookie(req);
+
     console.log("-----");
 
     origin = req.headers.origin
@@ -26,6 +29,12 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(express.text())
+
+function cookie(req) {
+    if (req.cookie != null) {
+        console.log('cookie: ' + req.cookie)
+    }
+}
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
