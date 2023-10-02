@@ -1,10 +1,15 @@
 const express = require('express')
 const app = express()
 const port = 4000
+const cookieParser = require('cookie-parser');
 // const audit = require('express-requests-logger')
 // app.use(audit())
+app.use(express.json());
+app.use(express.text())
+app.use(cookieParser());
 
-const allowedGreetOrigins = ['https://www.google.com', 'https://meta.ua', 'https://en.wikipedia.org']
+const allowedGreetOrigins = ['https://www.google.com', 'https://meta.ua', 'https://en.wikipedia.org',
+    "http://top:4000", "http://localhost:4000"]
 let origin
 
 app.use((req, res, next) => {
@@ -14,7 +19,7 @@ app.use((req, res, next) => {
     console.log("host:    " + req.headers.host);
     console.log("origin:    " + req.headers.origin);
 
-    cookie(req);
+    // cookiesLog(req);
 
     console.log("-----");
 
@@ -25,12 +30,30 @@ app.use((req, res, next) => {
 
     res.set('Cache-Control', 'no-store')
 
+    const SEC = 1000;
+
+    res.cookie('HOST | ORIGIN ', (req.headers.host).toString() + " | " + req.headers.origin, {
+        maxAge: 15 * SEC,
+        httpOnly: true,
+        secure: false
+    })
+    // check if client sent cookie
+    const cookie = req.cookies.cookieName
+    if (cookie === undefined) {
+        // no: set a new cookie
+        let randomNumber = Math.random().toString()
+        randomNumber = randomNumber.substring(2, randomNumber.length);
+        res.cookie('cookieName', randomNumber, {maxAge: 30 * SEC, httpOnly: false});
+        console.log('cookie created successfully');
+    } else {
+        // yes, cookie was already present
+        console.log('cookie exists', cookie);
+    }
+
     next();
 });
-app.use(express.json());
-app.use(express.text())
 
-function cookie(req) {
+function cookiesLog(req) {
     if (req.cookie != null) {
         console.log('cookie: ' + req.cookie)
     }
