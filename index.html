@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>CV</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="container">
+    <div class="info">
 
-<table cellspacing="15">
-    <tr>
-        <td>
-            <img src="download (1).jpeg" width="200" alt="Not found pic">
-        </td>
-        <td>
+        <img class="avatar" src="download (1).jpeg" alt="Not found pic">
+        <div class="info-text">
             <h1>Some Man</h1>
             <p>
                 <em>
@@ -19,85 +18,99 @@
                 </em>
             </p>
             <p>Travelling</p>
-        </td>
-    </tr>
-</table>
 
-<hr>
+            <h4>social networks</h4>
+            <a href="https://facebook.com">facebook</a>
+            <a href="https://i.ua" target="_blank">i.ua</a>
+            google
+            instagram
+        </div>
+    </div>
 
-<h2>social networks</h2>
-<ul>
-    <li><a href="https://facebook.com">facebook</a></li>
-    <li><a href="https://i.ua" target="_blank">i.ua</a></li>
-    <li>google</li>
-    <li>instagram</li>
-</ul>
+    <hr>
 
-<hr>
+    <h2>My hobbies</h2>
+    <ol class="list">
+        <li>football</li>
+        <li>ski</li>
+        <li>snowboard</li>
+        <li>car</li>
+        <li>travelling</li>
+    </ol>
 
-<h2>My hobbies</h2>
-<ol>
-    <li>football</li>
-    <li>ski</li>
-    <li>snowboard</li>
-    <li>car</li>
-    <li>travelling</li>
-</ol>
+    <hr>
 
-<hr>
+    <div class="card bg-yellow">
+        <h2>Experience</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Years</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Job1</td>
+                <td>Developer</td>
+                <td>2016-2017</td>
+            </tr>
+            <tr>
+                <td>Job2</td>
+                <td>Lead</td>
+                <td>2017-2019</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-<h2>Experience</h2>
-<table border="2">
-    <thead>
-    <tr>
-        <th>Company</th>
-        <th>Position</th>
-        <th>Years</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Job1</td>
-        <td>Developer</td>
-        <td>2016-2017</td>
-    </tr>
-    <tr>
-        <td>Job2</td>
-        <td>Lead</td>
-        <td>2017-2019</td>
-    </tr>
-    </tbody>
-</table>
+    <hr>
 
-<hr>
+    <div class="card bg-green">
+        <h2>Youtube courses</h2>
+        <ul class="link-list">
+            <li>
+                <a href="http://youtube.com">youtube</a>
+            </li>
+            <li>
+                <a href="http://instagram.com">instagram</a>
+            </li>
+        </ul>
+    </div>
+    <hr>
 
-<h2>Youtube courses</h2>
-<a href="youtube.html">See cources</a>
+    <div class="contact">
+        <h2>Contacts</h2>
+
+        <form action="index.html">
+            <div class="row">
+                <div class="form-group">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" placeholder="enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your email</label>
+                    <input type="text" id="email" placeholder="enter your email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your message</label>
+                <textarea type="" id="message" placeholder="enter your message" rows="3" , cols="20"></textarea>
+            </div>
+            <br>
+
+            <input class="btn" type="submit" value="Contanct">
+        </form>
+    </div>
+
+<!--    <div class="position">-->
+<!--        <div class="box">-->
+
+<!--        </div>-->
+<!--    </div>-->
+</div>
 </body>
 </html>
-
-<hr>
-
-<h2>Contacts</h2>
-
-<form action="index.html">
-    <label for="name">Your name</label>
-    <input type="text" id="name" placeholder="enter your name">
-
-    <br>
-
-    <label for="email">Your email</label>
-    <input type="text" id="email" placeholder="enter your email">
-
-    <br>
-
-    <label for="message">Your message</label>
-
-    <br>
-
-    <textarea type="" id="message" placeholder="enter your message" rows="3", cols="20"></textarea>
-
-    <br>
-
-    <input type="submit" value="Contanct">
-</form>
