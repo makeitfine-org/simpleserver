@@ -1,0 +1,27 @@
+{
+  "name": "simpleserver",
+  "version": "1.0.0",
+  "description": "Train Node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/stingion/simpleserver.git"
+  },
+  "author": "eug",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/stingion/simpleserver/issues"
+  },
+  "homepage": "https://gitlab.com/stingion/simpleserver#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
